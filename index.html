@@ -35,7 +35,16 @@
     .sub {
       color: #555;
       font-size: 14px;
-      margin-bottom: 25px;
+      margin-bottom: 20px;
+    }
+
+    input {
+      width: 90%;
+      padding: 10px;
+      margin-bottom: 15px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+      font-size: 14px;
     }
 
     button {
@@ -75,9 +84,10 @@
   <div class="card" id="hrView">
     <div class="logo">HR Application Portal</div>
     <div class="sub">
-      Thank you for applying.  
-      Please complete the final step.
+      Please enter candidate name to complete the final step.
     </div>
+
+    <input type="text" id="candidateName" placeholder="Enter candidate name" />
 
     <button class="primary" onclick="showValentine()">Submit Application</button>
     <button class="danger">Cancel</button>
@@ -85,7 +95,7 @@
 
   <!-- VALENTINE SURPRISE -->
   <div class="card hidden" id="valentineView">
-    <h2>Will you be my Valentine?Sweety 💖</h2>
+    <h2 id="valentineText">Will you be my Valentine? 💖</h2>
 
     <img src="images/valentine.jpg" alt="Valentine Image" />
 
@@ -95,12 +105,22 @@
 
   <script>
     function showValentine() {
+      const name = document.getElementById("candidateName").value.trim();
+
+      if (!name) {
+        alert("Please enter candidate name 🙂");
+        return;
+      }
+
+      document.getElementById("valentineText").innerText =
+        `Will you be my Valentine, ${name}? 💖`;
+
       document.getElementById("hrView").classList.add("hidden");
       document.getElementById("valentineView").classList.remove("hidden");
     }
 
     function yesClicked() {
-      alert("Yay! You just made my day 💕🥰");
+      alert("Yay! You just made my day,${name} 💕🥰");
     }
 
     const noBtn = document.getElementById("runawayNo");
